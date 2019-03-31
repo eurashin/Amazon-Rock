@@ -1,6 +1,6 @@
 import logging
-import cv2
-import pyfirmata_test
+#import cv2
+#import pyfirmata_test
 import os
 
 from flask import Flask
@@ -17,22 +17,22 @@ def launch():
 
 @ask.intent('DrawIntent', mapping = {'item':'item'})
 def Draw(item):
-    img = cv2.imread('images/' + item + '.jpg', 0)
-    points = movement.image_to_direction(img)
-    pyfirmata_test.draw(points)
-    return statement('I will draw {}'.format(item))
+    #img = cv2.imread('images/' + item + '.jpg', 0)
+    #points = movement.image_to_direction(img)
+    #pyfirmata_test.draw(points)
+    return statement('I will draw a {} for you.'.format(item))
 
 @ask.intent('GoIntent', mapping = {'direction':'direction', 'distance':'distance'})
 def move(direction,distance):
     # Forward or Backward
-    pyfirmata_test.straight(distance)
-    return statement('Moving {},{}'.format(direction,distance))
+    #pyfirmata_test.straight(distance)
+    return statement('Moving {} {} inches.'.format(direction,distance))
 
 @ask.intent('TurnIntent', mapping = {'rotdir':'rotdir', 'degrees':'degrees'})
 def turn(rotdir,degrees):
     # Right or Left
-    pyfirmata_test.turn(direction)
-    return statement('Turning {},{}'.format(rotdir,degrees))
+    #pyfirmata_test.turn(direction)
+    return statement('Turning {} {} degrees.'.format(rotdir,degrees))
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
