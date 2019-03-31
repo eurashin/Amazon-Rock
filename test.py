@@ -1,6 +1,8 @@
 import movement
 import cv2
+import pyfirmata_test.py
 
 img = cv2.imread('images/octocat.jpg',0)
-print(movement.image_to_direction(img))
+points = movement.image_to_direction(img)
 
+pyfirmata_test.move_rock(points)
