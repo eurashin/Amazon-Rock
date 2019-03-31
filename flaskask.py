@@ -1,5 +1,6 @@
 import logging
 import os
+import movement 
 
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
@@ -23,14 +24,21 @@ def Gpio_Intent(status,room):
     #GPIO.setmode(GPIO.BCM)    
     #GPIO.setup(17,GPIO.OUT)
     if status in STATUSON:
-	#GPIO.output(17,GPIO.HIGH)
-	return statement('turning {} lights'.format(status))
+        #GPIO.output(17,GPIO.HIGH)
+        return statement('turning {} lights'.format(status))
     elif status in STATUSOFF:
         #GPIO.output(17,GPIO.LOW)
         return statement('turning {} lights'.format(status))
     else:
         return statement('Sorry not possible.')
- 
+
+@ask.intent('Draw', mapping = {'object':'object'})
+def Draw(obj):
+    img = cv2.imread('images/' + obj, 0)
+    print(movement.image_to_direction(img))
+    return statement('Dooo do dooo!')
+    
+
 @ask.intent('AMAZON.HelpIntent')
 def help():
     speech_text = 'You can say hello to me!'

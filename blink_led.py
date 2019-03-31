@@ -5,8 +5,8 @@ import time
 GP = GPIOProcessor()
 
 try:
-    Pin27 = GP.getPin27()
-    Pin27.out()
+    Pin23 = GP.getPin23()
+    Pin23.out()
 
     for i in range(0,20):
         Pin27.high()

@@ -1,0 +1,17 @@
+h1, h3 {
+    color: #182e56;
+}
+
+h3 {
+    font-size:30px;
+}
+
+h1 {
+    font-weight:bold; 
+    font-size:70px;
+}
+
+h2 {
+    color:white;
+    font-size:40px;
+}

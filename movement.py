@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import math
 import turtle
 
+
 def max_length_index(arr):
     lengths = [len(arr_el) for arr_el in arr]
     return(lengths.index(max(lengths)))
@@ -33,7 +34,9 @@ def image_to_direction(open_img):
         total_phi = total_phi + move[1]
         polar_points.append(move)
     turtle_draw(polar_points)
-    
+    return(polar_points)
+
+
 
 
 def direction(point1, point2, previous_phi):
@@ -54,7 +57,6 @@ def direction(point1, point2, previous_phi):
     else: 
         phi = np.arctan2(point_prime[1], point_prime[0])
 
-    print(phi)
     phi = phi - previous_phi
     return((rho, phi))
     
