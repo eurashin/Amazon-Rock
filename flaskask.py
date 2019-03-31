@@ -23,11 +23,11 @@ def Gpio_Intent(status,room):
     else:
         return statement('Sorry not possible.')
 
-@ask.intent('Draw', mapping = {'object':'object'})
-def Draw(obj):
-    img = cv2.imread('images/' + obj, 0)
+@ask.intent('DrawIntent', mapping = {'item':'item'})
+def Draw(item):
+    #img = cv2.imread('images/' + obj, 0)
     #print(movement.image_to_direction(img))
-    return statement('Dooo do dooo!')
+    return statement('I will draw {}'.format(item))
     
 
 @ask.intent('AMAZON.HelpIntent')
