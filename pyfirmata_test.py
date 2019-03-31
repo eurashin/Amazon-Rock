@@ -10,7 +10,7 @@ speed = .01
 
 def move_rock(polar_points):
     for point in polar_points:
-        print(point)
+        print(point[1]/(2*math.pi)*circle)
         turn(right_wheel, point[1])
         time.sleep(1)
         straight(point[0])
@@ -19,7 +19,6 @@ def move_rock(polar_points):
 
 
 def turn(pin, angle): 
-    print(angle/(2*math.pi)*circle)
     board.digital[pin].write(1)
     time.sleep(3)
     board.digital[pin].write(0)
