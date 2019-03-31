@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-#import turtle
+import turtle
 import math
 
 
@@ -31,8 +31,9 @@ def image_to_direction(open_img):
     for i in range(len(points) - 1): 
         move = direction(points[i], points[i+1], total_phi)
         total_phi = total_phi + move[1]
+        total_phi = total_phi % (2 * math.pi)
         polar_points.append(move)
-#    turtle_draw(polar_points)
+    turtle_draw(polar_points)
     return(polar_points)
 
 
@@ -41,6 +42,7 @@ def image_to_direction(open_img):
 def direction(point1, point2, previous_phi):
     #point 1 is the 0,0
     point_prime = (point2[0] - point1[0], point2[1] - point1[1])
+    print(point_prime)
     rho = np.sqrt(point_prime[0]**2 + point_prime[1]**2)
     phi = 0
     if(point_prime[0] == 0): #straight up or down
@@ -57,6 +59,10 @@ def direction(point1, point2, previous_phi):
         phi = np.arctan2(point_prime[1], point_prime[0])
 
     phi = phi - previous_phi
+    print("before: "  + str(math.degrees(phi)))
+    if(phi < 0): 
+        phi = (2 * math.pi) - abs(phi)
+    print("after: "  + str(math.degrees(phi)))
     return((rho, phi))
     
 
@@ -65,9 +71,11 @@ def show_image(img):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-#def turtle_draw(polar_points): 
-#    turt = turtle.Turtle()
-#    for point in polar_points: 
-#        turt.left(math.degrees(point[1]))
-#        turt.forward(point[0])
-#    turt.done() 
+def turtle_draw(polar_points): 
+    turt = turtle.Turtle()
+    turt.speed(1)
+    for point in polar_points:
+        print(math.degrees(point[1]))
+        turt.left(math.degrees(point[1]))
+        turt.forward(point[0])
+    turt.done() 
