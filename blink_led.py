@@ -1,7 +1,6 @@
 from GPIOLibrary import GPIOProcessor
 import time
 
-
 GP = GPIOProcessor()
 
 try:
