@@ -1,8 +1,8 @@
 import logging
-import cv2
-import pyfirmata_test
+#import cv2
+#import pyfirmata_test
 import os
-import movement 
+import movement
 
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
@@ -16,22 +16,24 @@ def launch():
     speech_text = 'Hi, I am Rocky. I can draw things.'
     return question(speech_text).reprompt(speech_text).simple_card(speech_text)
 
-@ask.intent('GpioIntent', mapping = {'status':'status'})
-def Gpio_Intent(status,room):
-    if status == 'high':
-        return statement('turning {} lights'.format(status))
-    elif status == 'low':
-        return statement('turning {} lights'.format(status))
-    else:
-        return statement('Sorry not possible.')
-
 @ask.intent('DrawIntent', mapping = {'item':'item'})
 def Draw(item):
-    img = cv2.imread('images/' + item + '.jpg', 0)
-    points = movement.image_to_direction(img)
-    pyfirmata_test.move_rock(points)
+    #img = cv2.imread('images/' + item + '.jpg', 0)
+    #points = movement.image_to_direction(img)
+    #pyfirmata_test.draw(points)
     return statement('I will draw {}'.format(item))
-    
+
+@ask.intent('GoIntent', mapping = {'direction':'direction', 'distance':'distance'})
+def move(direction):
+    # Forward or Backward
+    #pyfirmata_test.straight(distance)
+    return statement('Moving {}'.format(direction))
+
+@ask.intent('TurnIntent', mapping = {'direction':'direction', 'distance':'distance'})
+    # Right or Left
+    #pyfirmata_test.turn(direction)
+    #pyfirmata_test.straight(distance)
+    return statement('Turning {}'.format(direction))
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
