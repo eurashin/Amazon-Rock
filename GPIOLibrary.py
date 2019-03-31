@@ -69,7 +69,7 @@ class GPIO:
     '''
     global PATH
     PATH = "/sys/class/gpio/"
-
+    
     def __init__(self,pin_number):
         self.pin_number = pin_number
 
@@ -84,7 +84,7 @@ class GPIO:
         file.close()
 
     def setDirection(self,direction):
-	print PATH + "gpio" + str(self.pin_number) + "/direction"
+        print(PATH + "gpio" + str(self.pin_number) + "/direction")
         file = open(PATH + "gpio" + str(self.pin_number) + "/direction",'w')
         file.write(str(direction))
         file.close()
@@ -96,7 +96,7 @@ class GPIO:
 
     def getDirection(self):
         file = open(PATH + "gpio" + str(self.pin_number) + "/direction",'r')
-        direction = file.read()
+        direction = file.read() 
         file.close()
         return direction
 
