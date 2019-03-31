@@ -1,6 +1,8 @@
 import logging
+import cv2
+import pyfirmata_test
 import os
-#import movement 
+import movement 
 
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
@@ -23,11 +25,12 @@ def Gpio_Intent(status,room):
     else:
         return statement('Sorry not possible.')
 
-@ask.intent('Draw', mapping = {'object':'object'})
-def Draw(obj):
-    img = cv2.imread('images/' + obj, 0)
-    #print(movement.image_to_direction(img))
-    return statement('Dooo do dooo!')
+@ask.intent('DrawIntent', mapping = {'item':'item'})
+def Draw(item):
+    img = cv2.imread('images/' + item + '.jpg', 0)
+    points = movement.image_to_direction(img)
+    pyfirmata_test.move_rock(points)
+    return statement('I will draw {}'.format(item))
     
 
 @ask.intent('AMAZON.HelpIntent')

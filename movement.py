@@ -1,8 +1,7 @@
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
+#import turtle
 import math
-import turtle
 
 
 def max_length_index(arr):
@@ -33,7 +32,7 @@ def image_to_direction(open_img):
         move = direction(points[i], points[i+1], total_phi)
         total_phi = total_phi + move[1]
         polar_points.append(move)
-    turtle_draw(polar_points)
+#    turtle_draw(polar_points)
     return(polar_points)
 
 
@@ -66,9 +65,9 @@ def show_image(img):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-def turtle_draw(polar_points): 
-    turt = turtle.Turtle()
-    for point in polar_points: 
-        turt.left(math.degrees(point[1]))
-        turt.forward(point[0])
-    turt.done() 
+#def turtle_draw(polar_points): 
+#    turt = turtle.Turtle()
+#    for point in polar_points: 
+#        turt.left(math.degrees(point[1]))
+#        turt.forward(point[0])
+#    turt.done() 

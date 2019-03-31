@@ -1,25 +1,29 @@
 import pyfirmata
+import time
 import math
 
-circle = 2 #number of seconds to turn 360 degrees
-right_wheel = 5
-left_wheel = 6
-speed = 1
+circle = .001 #number of seconds to turn 360 degrees
+right_wheel = 9
+left_wheel = 10
+speed = .01
+board = pyfirmata.Arduino('/dev/tty96B0')
 
 def move_rock(polar_points):
-    board = pyfirmata.Arduino('/dev/tty96B0')
-
-    for point in polar_points: 
-        turn(right_wheel, point[0])
+    print len(polar_points)
+    for point in polar_points:
+        print point
+        turn(right_wheel, point[1])
         time.sleep(1)
-        straight(point[1])
+        straight(point[0])
         time.sleep(1)
     
 
 
 def turn(pin, angle): 
     board.digital[pin].write(1)
-    time.sleep(angle/(2*math.pi) * circle)
+    #time.sleep(angle/(2*math.pi) * circle)
+    print angle/(2*math.pi)*circle
+    time.sleep(3)
     board.digital[pin].write(0)
 
 def straight(distance): 
