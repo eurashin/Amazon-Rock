@@ -1,33 +1,24 @@
 import logging
 import os
-import movement 
+#import movement 
 
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
-#import RPi.GPIO as GPIO
 
 app = Flask(__name__)
 ask = Ask(app, "/")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
-STATUSON = ['on','high']
-STATUSOFF = ['off','low']
-
 @ask.launch
 def launch():
-    speech_text = 'Welcome to Raspberry Pi Automation.'
+    speech_text = 'Hi, I am Rocky. I can draw things.'
     return question(speech_text).reprompt(speech_text).simple_card(speech_text)
 
 @ask.intent('GpioIntent', mapping = {'status':'status'})
 def Gpio_Intent(status,room):
-    #GPIO.setwarnings(False)
-    #GPIO.setmode(GPIO.BCM)    
-    #GPIO.setup(17,GPIO.OUT)
-    if status in STATUSON:
-        #GPIO.output(17,GPIO.HIGH)
+    if status == 'high':
         return statement('turning {} lights'.format(status))
-    elif status in STATUSOFF:
-        #GPIO.output(17,GPIO.LOW)
+    elif status == 'low':
         return statement('turning {} lights'.format(status))
     else:
         return statement('Sorry not possible.')
@@ -35,7 +26,7 @@ def Gpio_Intent(status,room):
 @ask.intent('Draw', mapping = {'object':'object'})
 def Draw(obj):
     img = cv2.imread('images/' + obj, 0)
-    print(movement.image_to_direction(img))
+    #print(movement.image_to_direction(img))
     return statement('Dooo do dooo!')
     
 
