@@ -1,6 +1,14 @@
 h1, h3 {
-    color: #182e56;
+    color: #606060;
+    text-transform:uppercase; 
+    font-weight:bold;
 }
+
+body {
+    color:#494b4f;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:#f7f7f7;
+}   
 
 h3 {
     font-size:30px;
@@ -14,4 +22,9 @@ h1 {
 h2 {
     color:white;
     font-size:40px;
+}
+
+.gold {
+    color: #aa8644;
+    font-style:italic;
 }
