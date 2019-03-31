@@ -17,9 +17,9 @@ def launch():
 
 @ask.intent('DrawIntent', mapping = {'item':'item'})
 def Draw(item):
-    #img = cv2.imread('images/' + item + '.jpg', 0)
-    #points = movement.image_to_direction(img)
-    #pyfirmata_test.draw(points)
+    img = cv2.imread('images/' + item + '.jpg', 0)
+    points = movement.image_to_direction(img)
+    pyfirmata_test.draw(points)
     return statement('I will draw a {} for you.'.format(item))
 
 @ask.intent('GoIntent', mapping = {'direction':'direction', 'distance':'distance'})
